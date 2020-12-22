@@ -39,7 +39,8 @@
         "gatsby",
         "javascript",
         "react",
-        "html"
+        "html",
+        "entrepreneurship"
       ],
       "required": true,
       "default": "gatsby"
