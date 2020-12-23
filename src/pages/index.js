@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Hero from "../components/Hero"
@@ -6,8 +6,19 @@ import Services from "../components/Services"
 import Jobs from "../components/Jobs"
 import Projects from "../components/Projects"
 import Blogs from "../components/Blogs"
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import SEO from "../components/SEO"
+
 export default ({ data }) => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+    })
+    AOS.refresh()
+  })
+
   const {
     allStrapiProjects: { nodes: projects },
     allStrapiBlogs: { nodes: blogs },
@@ -17,10 +28,18 @@ export default ({ data }) => {
     <Layout>
       <SEO title="Home" description="this is our home page" />
       <Hero />
-      <Services />
-      <Jobs />
-      <Projects projects={projects} title="featured projects" showLink />
-      <Blogs blogs={blogs} title="latest articles" showLink />
+      <div data-aos="fade">
+        <Services />
+      </div>
+      <div data-aos="fade">
+        <Jobs />
+      </div>
+      <div data-aos="fade">
+        <Projects projects={projects} title="featured projects" showLink />
+      </div>
+      <div data-aos="fade">
+        <Blogs blogs={blogs} title="My Blogs" showLink />
+      </div>
     </Layout>
   )
 }
